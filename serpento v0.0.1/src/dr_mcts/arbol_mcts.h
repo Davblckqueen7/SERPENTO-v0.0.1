@@ -133,15 +133,15 @@ namespace dr {
 						for (int t = 0; t < profundidad_simulacion; t++) {
 							if (estado.is_terminal()) break;
 
-							if (estado.get_random_action(accion))
-								estado.apply_action(accion);
+							if (estado.ObtenerAccionAleatoria(accion))
+								estado.AplicarAccion(accion);
 							else
 								break;
 						}
 					}
 
 					// obtener premios de todos los agentes
-					const std::vector<float> premios = estado.evaluate();
+					const std::vector<float> premios = estado.Evaluar();
 
 					// añadimos a la historia
 					if (estados_explorados) estados_explorados->push_back(estado);

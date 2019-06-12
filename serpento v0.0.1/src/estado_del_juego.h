@@ -7,19 +7,22 @@
 using namespace dr::mcts;
 
 namespace snake {
+
+	const enum movimiento { MOVER_ADELANTE = 0, MOVER_IZQUIERDA, MOVER_DERECHA};
 	struct Accion
 	{
 	public:
-		Accion(int m = 0) :movimiento(m) {}
-		int movimiento; //Las acciones posibles seran 3
+		Accion(movimiento m = MOVER_ADELANTE) :mov(m) {}
+		movimiento mov; //Las acciones posibles seran 3
 						//	- 0: Mover a Adelante
 						//	- 1: Mover a la Izquierda
 						//	- 2: Mover a la Derecha
 	};
 
-#define casilla_Vacia		-1
-#define casilla_Serpiente	1
-#define casilla_Alimento	0
+	constexpr auto casilla_Vacia = 0;
+	constexpr auto casilla_Serpiente = 1;
+	constexpr auto casilla_Alimento = 2;
+	const enum direccion { IZQUIERDA = 0, ARRIBA, DERECHA, ABAJO };
 
 	class Estado
 	{
@@ -59,11 +62,18 @@ namespace snake {
 		struct
 		{
 			int num_movi;			// un contador de los movimientos realizados por la serpiente
-			bool es_el_final;		// ya sea que el estado este terminado o no. (Estaria terminado si no se puede sobrevivir o comio fruta)
+			bool es_el_final;		// ya sea que el estado este terminado o no. (Estaria terminado si no se puede sobrevivir)
+			bool comio_fruta;		// yas sea que la cabeza este sobre la fruta (come)
 			int puntaje;			// un contador del puntaje optenido por la serpiente
 			int tablero[10][10];	// el contenedor de las casillas y el espacio de juego
+			int longitud;			// longitud de la serpiente
+			direccion dir;			// direccion a donde apunta la cabeza de la serpiente
 		} datos;
 
+		// re-ubicar la fruta
+		void reubicar_comida();
+
+		// reinicia la partida
 		void reiniciar();
 
 		// Funciones para usar OpenFrameworks:

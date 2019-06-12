@@ -24,7 +24,7 @@ namespace dr {
 				estado(estado),
 				accion(),
 				padre(padre),
-				agente_id(estado.agente_id()),
+				agente_id(estado.IDAgente()),
 				num_visitas(0),
 				valor(0),
 				profundidad(padre ? padre->profundidad + 1 : 0)
@@ -42,7 +42,7 @@ namespace dr {
 				// si esta es la primera expansión y aún no tenemos todas las acciones posibles
 				if (acciones.empty()) {
 					// recuperar lista de acciones del estado
-					estado.get_acciones(acciones);
+					estado.ObtenerAcciones(acciones);
 
 					// aleatorizar el orden
 					std::random_shuffle(acciones.begin(), acciones.end());
@@ -73,7 +73,7 @@ namespace dr {
 			bool esta_expandido() const { return hijos.empty() == false && hijos.size() == acciones.size(); }
 
 			// pregunta si este Nodo termina la búsqueda (es decir, el juego)
-			bool es_el_final() const { return estado.is_terminal(); }
+			bool es_el_final() const { return estado.es_el_final(); }
 
 			// numero de veces que un nodo es visitado
 			int get_num_visitas() const { return num_visitas; }
@@ -118,7 +118,7 @@ namespace dr {
 				nodo_hijo->accion = nueva_accion;
 
 				// aplicar la nueva acción al estado del Nodo hijo
-				nodo_hijo->estado.apply_action(nueva_accion);
+				nodo_hijo->estado.AplicarAccion(nueva_accion);
 
 				// añadir a la lista de hijos
 				hijos.push_back(Ptr(nodo_hijo));

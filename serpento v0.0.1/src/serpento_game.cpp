@@ -28,7 +28,15 @@ public:
 	//--------------------------------------------------------------
 	void update()
 	{
+		// si el juego no a terminado
+		if (!estado.datos.es_el_final)
+		{
+			// depura el MCTS con el metodo UCT en el estado actual y obtiene la mejor acción para realizar
+			accion = uct.depurar(estado);
 
+			// aplica la accion al estado actual
+			estado.AplicarAccion(accion);
+		}
 	}
 
 	//--------------------------------------------------------------
