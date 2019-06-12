@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\serpento_game.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\estado_del_juego.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons">
+      <UniqueIdentifier>{218583b9-805c-4a38-b189-03cf79754610}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\dr_mcts">
+      <UniqueIdentifier>{b41625ad-8ce5-4e52-9c21-e60f9b7efa3e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\dr_mcts\arbol_mcts.h">
+      <Filter>src\dr_mcts</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dr_mcts\nodo_arbol.h">
+      <Filter>src\dr_mcts</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dr_mcts\temporalizador_dr.h">
+      <Filter>src\dr_mcts</Filter>
+    </ClInclude>
+    <ClInclude Include="src\estado_del_juego.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="icon.rc" />
+  </ItemGroup>
+</Project>
