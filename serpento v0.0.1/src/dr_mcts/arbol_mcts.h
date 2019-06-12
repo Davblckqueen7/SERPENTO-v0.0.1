@@ -141,14 +141,14 @@ namespace dr {
 					}
 
 					// obtener premios de todos los agentes
-					const std::vector<float> premios = estado.Evaluar();
+					const float premio = estado.Evaluar();
 
 					// añadimos a la historia
 					if (estados_explorados) estados_explorados->push_back(estado);
 
 					// 4. BACK PROPAGATION
 					while (nodo) {
-						nodo->actualizar(premios);
+						nodo->actualizar(premio);
 						nodo = nodo->get_padre();
 					}
 

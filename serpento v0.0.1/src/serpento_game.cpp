@@ -18,7 +18,6 @@ public:
 		ofSetVerticalSync(true);
 
 		// Inicio de los parametros para el arbol de busquedas UCT *OPCIONAL
-		//TODO Revizar que valor conviene más
 		uct.uct_k = sqrt(2);
 		uct.max_milisegundos = 0;
 		uct.max_iteraciones = 100;

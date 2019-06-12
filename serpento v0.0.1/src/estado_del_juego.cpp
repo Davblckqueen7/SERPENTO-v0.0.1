@@ -20,7 +20,6 @@ void snake::Estado::AplicarAccion(const Accion & accion)
 	// Verificar que la accion este dentro del rango de acciones (0-2)
 	if (accion.mov < 0 || accion.mov > 2) return;
 
-	//TODO Esta operacion puede fallar por el uso del std::pars y la falta de crearlas con Makepars
 	// Agregar segmentos de la cola a la serpiente (si existen)
 	int prevX = datos.cola[0].first;
 	int prevY = datos.cola[0].second;
@@ -115,6 +114,9 @@ void snake::Estado::AplicarAccion(const Accion & accion)
 	default:
 		break;
 	}
+
+	// Aumentamos el contador de número de movimientos
+	datos.num_movi++;
 
 	// Verificar si la casilla en la que esta la cabeza de la serpiente es una pared
 	if (datos.pos.first > 10 || datos.pos.first < 0 || datos.pos.second > 10 || datos.pos.second < 0)
@@ -253,7 +255,7 @@ bool snake::Estado::ObtenerAccionAleatoria(Accion & accion)
 
 const float snake::Estado::Evaluar() const
 {
-	return 0.0f;
+	return std::powf((1 / 3), datos.num_movi);
 }
 
 //----------------------------------------------------------------------------
@@ -274,9 +276,11 @@ void snake::Estado::reiniciar()
 	datos.dir = DERECHA;
 	datos.pos.first, datos.pos.second = 4;
 	datos.cola.clear();
+	datos.cola.push_back(std::make_pair(4, 4));
 	datos.longitud_cola = 0;
 	datos.puntaje = 0;
 	datos.num_movi = 0;
+	
 	reubicar_comida();
 }
 

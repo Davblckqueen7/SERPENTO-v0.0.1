@@ -54,9 +54,9 @@ namespace dr {
 
 
 			//--------------------------------------------------------------
-			void actualizar(const std::vector<float>& premios)
+			void actualizar(const float& premio)
 			{
-				this->valor += premios[agente_id];
+				this->valor += premio;
 				num_visitas++;
 			}
 
