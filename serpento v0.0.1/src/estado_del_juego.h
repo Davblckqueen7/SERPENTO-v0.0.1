@@ -31,7 +31,7 @@ namespace snake {
 		Estado();
 
 		// ya sea que el estado este terminado o no (Estaria terminado si no se puede sobrevivir o comio fruta)
-		bool SeAcabo();
+		bool es_el_final();
 
 		// id del agente (por defecto en 0) que tomara la decición
 		int IDAgente();
