@@ -131,7 +131,7 @@ namespace dr {
 					if (!nodo->es_el_final()) {
 						Accion accion;
 						for (int t = 0; t < profundidad_simulacion; t++) {
-							if (estado.is_terminal()) break;
+							if (estado.es_el_final()) break;
 
 							if (estado.ObtenerAccionAleatoria(accion))
 								estado.AplicarAccion(accion);
