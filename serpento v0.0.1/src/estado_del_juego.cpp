@@ -115,6 +115,33 @@ void snake::Estado::AplicarAccion(const Accion & accion)
 		break;
 	}
 
+	// Incribimos los datos en el tablero de juego
+	limpiar_tablero();
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			if (i == datos.pos.first && j == datos.pos.second)
+			{
+				datos.tablero[i][j] = casilla_Serpiente;
+			}
+			else if (i == datos.fruta.first && j == datos.fruta.second)
+			{
+				datos.tablero[i][j] = casilla_Alimento;
+			}
+			else
+			{
+				for (int k = 0; k < datos.longitud_cola; k++)
+				{
+					if (datos.cola[k].first == i && datos.cola[k].second == j)
+					{
+						datos.tablero[i][j] = casilla_Serpiente;
+					}
+				}
+			}
+		}
+	}
+
 	// Aumentamos el contador de número de movimientos
 	datos.num_movi++;
 
@@ -262,6 +289,16 @@ const float snake::Estado::Evaluar() const
 // ESPECIFICOS DEL JUEGO:
 //----------------------------------------------------------------------------
 
+void snake::Estado::limpiar_tablero()
+{
+	datos.tablero.clear();
+	std::vector<int> fila = { casilla_Vacia,casilla_Vacia,casilla_Vacia ,casilla_Vacia ,casilla_Vacia ,casilla_Vacia ,casilla_Vacia ,casilla_Vacia ,casilla_Vacia ,casilla_Vacia };
+	for (int i = 0; i < 10; i++)
+	{
+		datos.tablero.push_back(fila);
+	}
+}
+
 void snake::Estado::reubicar_comida()
 {
 	datos.fruta.first = floor(ofRandom(9));
@@ -280,7 +317,7 @@ void snake::Estado::reiniciar()
 	datos.longitud_cola = 0;
 	datos.puntaje = 0;
 	datos.num_movi = 0;
-	
+	limpiar_tablero();
 	reubicar_comida();
 }
 
