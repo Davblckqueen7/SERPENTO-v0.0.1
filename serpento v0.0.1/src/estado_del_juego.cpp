@@ -286,12 +286,35 @@ void snake::Estado::reiniciar()
 
 void snake::Estado::dibujar()
 {
-}
+	ofPushStyle();
+	ofNoFill();
+	ofSetLineWidth(15);
+	ofBackground(ofColor::gray);
+	float w = ofGetWidth();
+	float h = ofGetHeight();
+	float casilla_w = w / 10;
+	float casilla_h = h / 10;
 
-void snake::Estado::dibujar_serpiente()
-{
-}
+	for (int c_l = 0; c_l < 10; c_l++)
+	{
+		for (int c_a = 0; c_a < 10; c_a++)
+		{
+			int i = c_a % 10;
+			int j = c_l / 10;
+			ofRectangle rect_casilla(i*casilla_w, j*casilla_h, casilla_w, casilla_h);
+			float tamaño = 1.0;		
+			if (datos.tablero[i][j] == casilla_Serpiente) 
+			{
+				ofSetColor(ofColor::green);
+				ofDrawRectangle(rect_casilla);
+			}
+			if (datos.tablero[i][j] == casilla_Alimento)
+			{
+				ofSetColor(ofColor::red);
+				ofDrawRectangle(rect_casilla);
+			}
+		}
+	}
 
-void snake::Estado::dibujar_alimento()
-{
+	ofPopStyle();
 }

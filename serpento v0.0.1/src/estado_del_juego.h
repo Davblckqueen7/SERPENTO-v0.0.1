@@ -82,8 +82,6 @@ namespace snake {
 		// Funciones para usar OpenFrameworks:
 
 		void dibujar();
-		void dibujar_serpiente();
-		void dibujar_alimento();
 	};
 }
 
