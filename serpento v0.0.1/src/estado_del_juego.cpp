@@ -20,21 +20,22 @@ void snake::Estado::AplicarAccion(const Accion & accion)
 	// Verificar que la accion este dentro del rango de acciones (0-2)
 	if (accion.mov < 0 || accion.mov > 2) return;
 
-	// Agregar segmentos de la cola a la serpiente (si existen)
-	int prevX = datos.cola[0].first;
-	int prevY = datos.cola[0].second;
-	int prev2X, prev2Y;
-	datos.cola[0].first = datos.pos.first;
-	datos.cola[0].second = datos.pos.second;
-	for (int i = 1; i < datos.longitud_cola; i++)
-	{
-		prev2X = datos.cola[i].first;
-		prev2Y = datos.cola[i].second;
-		datos.cola[i].first = prevX;
-		datos.cola[i].second = prevY;
-		prevX = prev2X;
-		prevY = prev2Y;
-	}
+	
+		// Agregar segmentos de la cola a la serpiente (si existen)
+		int prevX = datos.cola[0].first;
+		int prevY = datos.cola[0].second;
+		int prev2X, prev2Y;
+		datos.cola[0].first = datos.pos.first;
+		datos.cola[0].second = datos.pos.second;
+		for (int i = 1; i < datos.longitud_cola; i++)
+		{
+			prev2X = datos.cola[i].first;
+			prev2Y = datos.cola[i].second;
+			datos.cola[i].first = prevX;
+			datos.cola[i].second = prevY;
+			prevX = prev2X;
+			prevY = prev2Y;
+		}
 
 	// Mover a la serpiente
 	switch (datos.dir)
@@ -159,6 +160,7 @@ void snake::Estado::AplicarAccion(const Accion & accion)
 	{
 		datos.puntaje += 10;
 		reubicar_comida();
+		datos.cola.push_back(std::make_pair(datos.pos.first, datos.pos.second));
 		datos.longitud_cola++;
 		datos.comio_fruta = true;
 	}
@@ -169,6 +171,22 @@ void snake::Estado::ObtenerAcciones(std::vector<Accion>& acciones)
 	acciones.clear();
 
 	int newPos;
+
+		// Agregar segmentos de la cola a la serpiente (si existen)
+		int prevX = datos.cola[0].first;
+		int prevY = datos.cola[0].second;
+		int prev2X, prev2Y;
+		datos.cola[0].first = datos.pos.first;
+		datos.cola[0].second = datos.pos.second;
+		for (int i = 1; i < datos.longitud_cola; i++)
+		{
+			prev2X = datos.cola[i].first;
+			prev2Y = datos.cola[i].second;
+			datos.cola[i].first = prevX;
+			datos.cola[i].second = prevY;
+			prevX = prev2X;
+			prevY = prev2Y;
+		}
 
 	// si cualquiera de las casillas vecinas a la cabeza de la serpiente esta vacia o es comida es una accion valida
 	switch (datos.dir)
@@ -311,10 +329,10 @@ void snake::Estado::reiniciar()
 	datos.comio_fruta = false;
 	
 	datos.dir = DERECHA;
-	datos.pos.first, datos.pos.second = 4;
+	datos.pos.first = 4; datos.pos.second = 4;
 	datos.cola.clear();
 	datos.cola.push_back(std::make_pair(4, 4));
-	datos.longitud_cola = 0;
+	datos.longitud_cola = 1;
 	datos.puntaje = 0;
 	datos.num_movi = 0;
 	limpiar_tablero();

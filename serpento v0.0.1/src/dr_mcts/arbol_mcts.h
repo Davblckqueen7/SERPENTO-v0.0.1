@@ -123,7 +123,9 @@ namespace dr {
 					}
 
 					// 2. EXPANCIÓN. Exapandimos agregando un solo hijo (si no es terminal o no está completamente expandido)
-					if (!nodo->esta_expandido() && !nodo->es_el_final()) nodo = nodo->expandir();
+					if (!nodo->esta_expandido() && !nodo->es_el_final()) { 
+						nodo = nodo->expandir();
+					}
 
 					Estado estado(nodo->get_estado());
 
@@ -131,12 +133,16 @@ namespace dr {
 					if (!nodo->es_el_final()) {
 						Accion accion;
 						for (int t = 0; t < profundidad_simulacion; t++) {
-							if (estado.es_el_final()) break;
+							if (estado.es_el_final()) {  
+								break; 
+							}
 
-							if (estado.ObtenerAccionAleatoria(accion))
+							if (estado.ObtenerAccionAleatoria(accion)) {
 								estado.AplicarAccion(accion);
-							else
+							}
+							else {
 								break;
+							}
 						}
 					}
 

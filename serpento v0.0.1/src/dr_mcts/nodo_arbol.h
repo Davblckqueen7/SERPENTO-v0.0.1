@@ -10,6 +10,8 @@ Contiene información / métodos relacionados con el Estado, Acción, Padres, Hijos
 #include <math.h>
 #include <vector>
 #include <algorithm>
+#include <ctime>    // For time()
+#include <cstdlib>  // For srand() and rand()
 
 namespace dr {
 	namespace mcts {
@@ -36,6 +38,7 @@ namespace dr {
 			// expandir agregando un solo hijo
 			Nodo* expandir()
 			{
+				srand(time(0));
 				// verificacion para saber que el nodo actual no esta completamente expandido
 				if (esta_expandido()) return NULL;
 
@@ -47,7 +50,6 @@ namespace dr {
 					// aleatorizar el orden
 					std::random_shuffle(acciones.begin(), acciones.end());
 				}
-
 				// agregar la siguiente acción en el nodo niño
 				return anadir_hijo_con_accion(acciones[hijos.size()]);
 			}
