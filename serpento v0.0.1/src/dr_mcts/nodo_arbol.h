@@ -24,7 +24,7 @@ namespace dr {
 				estado(estado),
 				accion(),
 				padre(padre),
-				agente_id(estado.IDAgente()),
+				agente_id(estado.datos.num_movi),
 				num_visitas(0),
 				valor(0),
 				profundidad(padre ? padre->profundidad + 1 : 0)
@@ -73,7 +73,7 @@ namespace dr {
 			bool esta_expandido() const { return hijos.empty() == false && hijos.size() == acciones.size(); }
 
 			// pregunta si este Nodo termina la búsqueda (es decir, el juego)
-			bool es_el_final() const { return estado.es_el_final(); }
+			bool es_el_final() const { return estado.datos.es_el_final; }
 
 			// numero de veces que un nodo es visitado
 			int get_num_visitas() const { return num_visitas; }

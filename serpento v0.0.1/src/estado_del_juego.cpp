@@ -141,11 +141,13 @@ void snake::Estado::ObtenerAcciones(std::vector<Accion>& acciones)
 {
 	acciones.clear();
 
+	int newPos;
+
 	// si cualquiera de las casillas vecinas a la cabeza de la serpiente esta vacia o es comida es una accion valida
 	switch (datos.dir)
 	{
 	case IZQUIERDA:
-		int newPos = datos.pos.first - 1;
+		newPos = datos.pos.first - 1;
 		if (newPos >= 0)
 		{
 			for (int i = 0; i < datos.longitud_cola; i++)
@@ -168,7 +170,7 @@ void snake::Estado::ObtenerAcciones(std::vector<Accion>& acciones)
 		}
 		break;
 	case ARRIBA:
-		int newPos = datos.pos.first - 1;
+		newPos = datos.pos.first - 1;
 		if (newPos >= 0)
 		{
 			for (int i = 0; i < datos.longitud_cola; i++)
@@ -191,7 +193,7 @@ void snake::Estado::ObtenerAcciones(std::vector<Accion>& acciones)
 		}
 		break;
 	case DERECHA:
-		int newPos = datos.pos.first + 1;
+		newPos = datos.pos.first + 1;
 		if (newPos < 10)
 		{
 			for (int i = 0; i < datos.longitud_cola; i++)
@@ -214,7 +216,7 @@ void snake::Estado::ObtenerAcciones(std::vector<Accion>& acciones)
 		}
 		break;
 	case ABAJO:
-		int newPos = datos.pos.first + 1;
+		newPos = datos.pos.first + 1;
 		if (newPos < 10)
 		{
 			for (int i = 0; i < datos.longitud_cola; i++)
@@ -235,8 +237,6 @@ void snake::Estado::ObtenerAcciones(std::vector<Accion>& acciones)
 				if (datos.cola[i].second != newPos && datos.cola[i].first == datos.pos.first)
 					acciones.push_back(Accion(MOVER_ADELANTE));
 		}
-		break;
-	default:
 		break;
 	}
 }

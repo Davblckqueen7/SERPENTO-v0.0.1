@@ -100,7 +100,7 @@ namespace dr {
 
 
 			//--------------------------------------------------------------
-			Accion depurar(const Estado& estado_actual, unsigned int semilla = 1, vector<Estado>* estados_explorados = nullptr)
+			Accion depurar(const Estado& estado_actual, unsigned int semilla = 1, std::vector<Estado>* estados_explorados = nullptr)
 			{
 				// inicializar el temporalizador
 				temporalizador.iniciar();
