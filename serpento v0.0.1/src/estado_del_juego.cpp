@@ -300,7 +300,13 @@ bool snake::Estado::ObtenerAccionAleatoria(Accion & accion)
 
 const float snake::Estado::Evaluar() const
 {
-	return std::powf((1 / 3), datos.num_movi);
+	float valor;
+	valor = std::powf((1 / 3), datos.num_movi);
+	if (valor != 0)
+	{
+		valor = valor;
+	}
+	return valor;
 }
 
 //----------------------------------------------------------------------------

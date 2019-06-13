@@ -42,9 +42,51 @@ public:
 	void draw()
 	{
 		estado.dibujar();
+		//dibujar en consola:
+		stringstream str;
+		for (int i = -1; i < 10 + 2; i++)
+			str << "#";
+		str << endl;
+
+		for (int i = -1; i < 10; i++)
+		{
+			for (int j = -1; j < 10; j++)
+			{
+				if (j == -1)
+					str << "#";
+				if (i == estado.datos.pos.second && j == estado.datos.pos.first)
+					str << "O";
+				else if (i == estado.datos.fruta.second && j == estado.datos.fruta.first)
+					str << "F";
+				else
+				{
+					bool print = false;
+					for (int k = 0; k < estado.datos.longitud_cola; k++)
+					{
+						if (estado.datos.cola[k].first == j && estado.datos.cola[k].second == i)
+						{
+							str << "o";
+							print = true;
+						}
+					}
+					if (!print)
+						str << " ";
+				}
+
+
+				if (j == 10 - 1)
+					str << "#";
+			}
+			str << endl;
+		}
+
+		for (int i = -1; i < 10 + 2; i++)
+			str << "#";
+		str << endl;
+		str << "Score:" << estado.datos.puntaje << endl;
 
 		// estadisticas
-		stringstream str;
+		
 		str << ofGetFrameRate() << " fps" << endl;
 		str << "Tiempo total : " << uct.get_temp().get_duracion_depuracion() << " us" << endl;
 		str << "Tiempo promedio : " << uct.get_temp().get_promedio_tiempo_duracion_ciclos() << " us" << endl;
